@@ -35,7 +35,17 @@ public class DecodificaTexto {
     
     private void leCaracter(FileReader texto, char letra) {
         //texto.
-        
+        int inteiro;
+        try {
+            while ((inteiro = this.texto.read()) != -1) {
+                this.letra = Character.toLowerCase((char) inteiro); // converte para minúscula
+                System.out.println(letra);
+            }
+        } finally {
+            if (this.texto != null) {
+                this.texto.close();
+            }
+        }
     }
 
     public ArrayList<ObjetoMusical> getMusica() {
