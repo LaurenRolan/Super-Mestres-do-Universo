@@ -27,7 +27,7 @@ public class Ordem extends ObjetoMusical {
     }
 
     public String getBPM() {
-        switch (this.BMP)
+        switch (this.BPM)
         {
             case 45 : return "T[LARGO]";
             case 95 : return "T[MODERATO]";
