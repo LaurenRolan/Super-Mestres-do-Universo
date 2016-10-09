@@ -12,6 +12,13 @@ package musicaixa;
 public class Nota extends ObjetoMusical {
     char nota;
     int oitava;
+    static int oitavaDefault = 3;
+    
+    public Nota()
+    {
+        this.nota = 'c'; //começa em dó
+        this.oitava = this.oitavaDefault;
+    }
 
     public char getNota() {
         return nota;
@@ -25,8 +32,16 @@ public class Nota extends ObjetoMusical {
         this.nota = nota;
     }
 
-    public void setOitava(int oitava) {
-        this.oitava = oitava;
+    public void aumentaOitava() {
+        this.oitava = this.oitava + 1;
+    }
+    
+    public void diminuiOitava() {
+        this.oitava = this.oitava - 1;
+    }
+    
+    public void voltaOitava() {
+        this.oitava = this.oitavaDefault;
     }
     
 }
