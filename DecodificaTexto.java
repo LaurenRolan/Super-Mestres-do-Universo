@@ -7,9 +7,12 @@ package musicaixa;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+
 
 /**
  *
@@ -22,9 +25,11 @@ public class DecodificaTexto {
     //Essenciais
     char letra;
     ArrayList<ObjetoMusical> musica;
+    private Nota ultimaNota;
 
     public DecodificaTexto(String nomeArquivo) {
         //this.nomeArquivo = nomeArquivo;
+        ultimaNota=new Nota();
         try {
             this.texto = new FileReader(nomeArquivo);
         } catch (FileNotFoundException ex) {
@@ -41,9 +46,15 @@ public class DecodificaTexto {
                 this.letra = Character.toUpperCase((char) inteiro); // converte para maiúscula (usada no JFugue)
                 System.out.println(letra);
             }
+        } catch (IOException ex) {
+            System.out.println("Erro ao ler arquivo de texto!");
         } finally {
             if (this.texto != null) {
-                this.texto.close();
+                try {
+                    this.texto.close();
+                } catch (IOException ex) {
+                    System.out.println("Erro ao fechar arquivo de texto!");
+                }
             }
         }
     }
@@ -51,6 +62,8 @@ public class DecodificaTexto {
     private void addObjeto(ObjetoMusical adicionado, ArrayList<ObjetoMusical> musica)
     {
         musica.add(adicionado);
+        if(adicionado instanceof Nota)  //se for nota, salva como ultimaNota
+            ultimaNota=(Nota)adicionado;
     }
 
     public ArrayList<ObjetoMusical> getMusica() {
@@ -59,35 +72,42 @@ public class DecodificaTexto {
     
     private void decodifica(char letra, ArrayList<ObjetoMusical> musica) {
         //Inicializa tanto a nota quanto a ordem. Adiciona dependendo do case
-        Nota nota = new Nota();
+        Nota nota = ultimaNota;
         Ordem ordem = new Ordem();
-        nota.setNota(letra);
         
         switch (letra)
         {
             //Caso seja uma nota ou silêncio
             case 'A':
+                nota.setNota(letra);
                 this.addObjeto(nota, musica);
                 break;
             case 'B':
+                nota.setNota(letra);
                 this.addObjeto(nota, musica);
                 break;
             case 'C':
+                nota.setNota(letra);
                 this.addObjeto(nota, musica);
                 break;
             case 'D':
+                nota.setNota(letra);
                 this.addObjeto(nota, musica);
                 break;
             case 'E':
+                nota.setNota(letra);
                 this.addObjeto(nota, musica);
                 break;
             case 'F':
+                nota.setNota(letra);
                 this.addObjeto(nota, musica);
                 break;
             case 'G':
+                nota.setNota(letra);
                 this.addObjeto(nota, musica);
                 break;
             case ' ':
+                nota.setNota(letra);
                 this.addObjeto(nota, musica);
                 break;
             
@@ -107,7 +127,7 @@ public class DecodificaTexto {
             case '4':
             case '6':
             case '8':
-                nota.aumentaOitava(); // deve armazenar a nota anterior
+                nota.aumentaOitava();
                 this.addObjeto(nota, musica);
                 break;
             case '1':
@@ -115,12 +135,12 @@ public class DecodificaTexto {
             case '5':
             case '7':
             case '9':
-                nota.diminuiOitava(); // deve armazenar a nota anterior
+                nota.diminuiOitava();
                 this.addObjeto(nota, musica);
                 break;
             case '?':
             case '.':
-                nota.voltaOitava(); // deve armazenar a nota anterior
+                nota.voltaOitava(); 
                 this.addObjeto(nota, musica);
                 break;
             case ';':
