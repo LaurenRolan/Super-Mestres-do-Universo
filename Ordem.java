@@ -21,13 +21,19 @@ public class Ordem extends ObjetoMusical {
     }
        
     public Ordem() {
-        this.BPM = 140;
+        this.BPM = 95;
         this.instrumento = "Piano";
         this.volume = 10;
     }
 
-    public int getBPM() {
-        return BPM;
+    public String getBPM() {
+        switch (this.BMP)
+        {
+            case 45 : return "LARGO";
+            case 95 : return "MODERATO";
+            case 145: return "VIVACE";
+            default : return "MODERATO";
+        }
     }
     
     public String getInstrumento() {
@@ -53,7 +59,7 @@ public class Ordem extends ObjetoMusical {
     
     public void aumentaBPM()
     {
-        if (this.BPM < 240)
+        if (this.BPM < 145)
         {
             this.BPM = this.BPM + 50;
         }
@@ -61,7 +67,7 @@ public class Ordem extends ObjetoMusical {
     
     public void diminuiBPM()
     {
-        if (this.BPM > 40)
+        if (this.BPM > 45)
         {
             this.BPM = this.BPM - 50;
         }   
