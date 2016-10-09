@@ -16,7 +16,7 @@ public class Nota extends ObjetoMusical {
     
     public Nota()
     {
-        this.nota = 'c'; //começa em dó
+        this.nota = 'C'; //começa em dó
         this.oitava = this.oitavaDefault;
     }
 
@@ -26,6 +26,10 @@ public class Nota extends ObjetoMusical {
 
     public int getOitava() {
         return oitava;
+    }
+    
+    public String notaOitava() {
+        return String.format("%c%d", this.nota, this.oitava);
     }
 
     public void setNota(char nota) {
