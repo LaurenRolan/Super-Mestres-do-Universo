@@ -10,12 +10,17 @@ package musicaixa;
  * @author lsrsampaio
  */
 public class MusiCaixa {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+      DecodificaTexto teste;
+        teste = new DecodificaTexto("C:\\Users\\Laure\\OneDrive\\Documentos\\TCP\\MusiCaixa\\src\\musicaixa\\letras.txt");
+        try {
+            teste.leCaracter();
+        } catch (IOException ex) {
+            System.out.println("Erro bizarro");
+        }
+        Player player = new Player();
+        player.play(teste.montaMusica());
+    }
     }
     
 }
