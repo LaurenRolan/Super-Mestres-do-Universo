@@ -38,7 +38,7 @@ public class DecodificaTexto {
         int inteiro;
         try {
             while ((inteiro = this.texto.read()) != -1) {
-                this.letra = Character.toLowerCase((char) inteiro); // converte para minúscula
+                this.letra = Character.toUpperCase((char) inteiro); // converte para maiúscula (usada no JFugue)
                 System.out.println(letra);
             }
         } finally {
@@ -66,25 +66,25 @@ public class DecodificaTexto {
         switch (letra)
         {
             //Caso seja uma nota ou silêncio
-            case 'a':
+            case 'A':
                 this.addObjeto(nota, musica);
                 break;
-            case 'b':
+            case 'B':
                 this.addObjeto(nota, musica);
                 break;
-            case 'c':
+            case 'C':
                 this.addObjeto(nota, musica);
                 break;
-            case 'd':
+            case 'D':
                 this.addObjeto(nota, musica);
                 break;
-            case 'e':
+            case 'E':
                 this.addObjeto(nota, musica);
                 break;
-            case 'f':
+            case 'F':
                 this.addObjeto(nota, musica);
                 break;
-            case 'g':
+            case 'G':
                 this.addObjeto(nota, musica);
                 break;
             case ' ':
@@ -96,9 +96,9 @@ public class DecodificaTexto {
                 ordem.aumentaVolume();
                 this.addObjeto(ordem, musica);
                 break;
-            case 'o':
-            case 'u':
-            case 'i':
+            case 'O':
+            case 'U':
+            case 'I':
                 ordem.diminuiVolume();
                 this.addObjeto(ordem, musica);
                 break;
