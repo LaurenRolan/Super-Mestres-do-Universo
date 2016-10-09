@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author lsrsampaio
  */
-public class DecodificaTexto {
+public class DecodificaTexto2 {
     //String nomeArquivo;
     FileReader texto;
     
@@ -27,7 +27,7 @@ public class DecodificaTexto {
     ArrayList<ObjetoMusical> musica;
     private Nota ultimaNota;
 
-    public DecodificaTexto(String nomeArquivo) {
+    public DecodificaTexto2(String nomeArquivo) {
         //this.nomeArquivo = nomeArquivo;
         ultimaNota=new Nota();
         try {
@@ -38,13 +38,23 @@ public class DecodificaTexto {
         this.musica = new ArrayList<ObjetoMusical>();
     }
     
-    private void leCaracter(FileReader texto, char letra) {
+    public String montaMusica()
+    {
+        String som = new String();
+        for(ObjetoMusical objeto : this.musica)
+        {
+            som = som + objeto.toString();
+        }
+        return som;
+    }
+    
+    private void leCaracter() {
         //texto.
         int inteiro;
         try {
             while ((inteiro = this.texto.read()) != -1) {
                 this.letra = Character.toUpperCase((char) inteiro); // converte para maiúscula (usada no JFugue)
-                System.out.println(letra);
+                this.decodifica(letra, musica);
             }
         } catch (IOException ex) {
             System.out.println("Erro ao ler arquivo de texto!");
