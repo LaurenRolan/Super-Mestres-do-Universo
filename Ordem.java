@@ -13,17 +13,16 @@ public class Ordem extends ObjetoMusical {
     int BPM;
     String instrumento;
     private int volume;
-
-    public Ordem(int BPM, String instrumento, int volume) {
-        this.BPM = BPM;
-        this.instrumento = instrumento;
-        this.volume = volume;
-    }
        
     public Ordem() {
         this.BPM = 95;
         this.instrumento = "Piano";
         this.volume = 10;
+    }
+    
+    public String toString()
+    {
+        return String.format(this.getBPM() + " " + this.getInstrumento() + " " + this.getVolume() + " ");
     }
 
     public String getBPM() {
