@@ -29,22 +29,31 @@ public class Ordem extends ObjetoMusical {
     public String getBPM() {
         switch (this.BMP)
         {
-            case 45 : return "LARGO";
-            case 95 : return "MODERATO";
-            case 145: return "VIVACE";
-            default : return "MODERATO";
+            case 45 : return "T[LARGO]";
+            case 95 : return "T[MODERATO]";
+            case 145: return "T[VIVACE]";
+            default : return "T[MODERATO]";
         }
     }
     
     public String getInstrumento() {
-        return instrumento;
+        return String.format("I[%s]", this.instrumento);
     }
     
-     public void trocaInstrumento() { // só um exemplo
+    public String getVolume() {
+        return String.format("X[Volume]=%d", this.volume);
+    }
+    
+    public void trocaInstrumento() { // só um exemplo
         if(this.instrumento == "Piano")
         {
             this.instrumento = "Guitar";
-        }        
+        }
+         
+        else if(this.instrumento == "Guitar")
+        {
+            this.instrumento = "Piano";
+        }
     }
     
     public void aumentaVolume()
