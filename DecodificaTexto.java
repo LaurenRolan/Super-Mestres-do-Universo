@@ -108,7 +108,7 @@ public class DecodificaTexto {
                 this.addObjeto(nota);
                 break;
             case ' ':
-                nota.setNota(letra);
+                nota.setNota('R');
                 this.addObjeto(nota);
                 break;
             
