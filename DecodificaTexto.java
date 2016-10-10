@@ -4,152 +4,153 @@
  * and open the template in the editor.
  */
 package musicaixa;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author lsrsampaio
+ * @author Laure
  */
 public class DecodificaTexto {
-    //String nomeArquivo;
+ //String nomeArquivo;
     private FileReader texto;
     
     //Essenciais
     private char letra;
-    private ArrayList<ObjetoMusical> musica;
-    private Ordem ordem = new Ordem(); // Ordem default
+    private Nota ultimaNota;
+    private String som;
 
     public DecodificaTexto(String nomeArquivo) {
-        //this.nomeArquivo = nomeArquivo;
+        ultimaNota=new Nota();
+        
         try {
             this.texto = new FileReader(nomeArquivo);
         } catch (FileNotFoundException ex) {
             System.out.println("Arquivo não encontrado!");
         }
-        this.musica = new ArrayList<ObjetoMusical>();
     }
     
-    public String montaMusica()
+    public String retornaMusica()
     {
-        String som = new String();
-        for(ObjetoMusical objeto : this.musica)
-        {
-            som = som + objeto.toString();
-        }
         return som;
     }
     
-    public void leCaracter() throws IOException{ //FileReader texto, char letra
+    public void leCaracter() {
         //texto.
-        int inteiro;
+        int caracter;
         try {
-            while ((inteiro = this.texto.read()) != -1) {
-                this.letra = Character.toLowerCase((char) inteiro);
-                //System.out.println(letra);
-                this.decodifica(letra, musica);
+            while ((caracter = this.texto.read()) != -1) {
+                this.letra = Character.toUpperCase((char) caracter); // converte para maiúscula (usada no JFugue)
+                this.decodifica(letra);
             }
+        } catch (IOException ex) {
+            System.out.println("Erro ao ler arquivo de texto!");
         } finally {
             if (this.texto != null) {
-                this.texto.close();
+                try {
+                    this.texto.close();
+                } catch (IOException ex) {
+                    System.out.println("Erro ao fechar arquivo de texto!");
+                }
             }
         }
     }
     
-    private void addObjeto(ObjetoMusical adicionado, ArrayList<ObjetoMusical> musica)
+    private void addObjeto(ObjetoMusical adicionado)
     {
-        if (musica == null) //Se não tiver começado, há uma ordem default
-        {
-            musica.add(this.ordem);
-        }
-        musica.add(adicionado);
+        som = som + adicionado.toString();
     }
 
-    private ArrayList<ObjetoMusical> getMusica() {
-        return musica;
+    public String getMusica() {
+        return som;
     }
     
-    private void decodifica(char letra, ArrayList<ObjetoMusical> musica) {
+    private void decodifica(char letra) {
         //Inicializa tanto a nota quanto a ordem. Adiciona dependendo do case
-        Nota nota = new Nota();
+        Nota nota = ultimaNota;
         Ordem ordem = new Ordem();
-        nota.setNota(letra);
         
         switch (letra)
         {
             //Caso seja uma nota ou silêncio
-            case 'a':
-                this.addObjeto(nota, musica);
+            case 'A':
+               nota.setNota(letra);
+               this.addObjeto(nota);
                 break;
-            case 'b':
-                this.addObjeto(nota, musica);
+            case 'B':
+                nota.setNota(letra);
+                this.addObjeto(nota);
                 break;
-            case 'c':
-                this.addObjeto(nota, musica);
+            case 'C':
+                nota.setNota(letra);
+                this.addObjeto(nota);
                 break;
-            case 'd':
-                this.addObjeto(nota, musica);
+            case 'D':
+                nota.setNota(letra);
+                this.addObjeto(nota);
                 break;
-            case 'e':
-                this.addObjeto(nota, musica);
+            case 'E':
+                nota.setNota(letra);
+                this.addObjeto(nota);
                 break;
-            case 'f':
-                this.addObjeto(nota, musica);
+            case 'F':
+                nota.setNota(letra);
+                this.addObjeto(nota);
                 break;
-            case 'g':
-                this.addObjeto(nota, musica);
+            case 'G':
+                nota.setNota(letra);
+                this.addObjeto(nota);
                 break;
             case ' ':
-                this.addObjeto(nota, musica);
+                nota.setNota(letra);
+                this.addObjeto(nota);
                 break;
             
             //Caso seja uma ordem            
             case '!':
                 ordem.aumentaVolume();
-                this.addObjeto(ordem, musica);
+                this.addObjeto(ordem);
                 break;
-            case 'o':
-            case 'u':
-            case 'i':
+            case 'O':
+            case 'U':
+            case 'I':
                 ordem.diminuiVolume();
-                this.addObjeto(ordem, musica);
+                this.addObjeto(ordem);
                 break;
             case '0':
             case '2':
             case '4':
             case '6':
             case '8':
-                nota.aumentaOitava(); // deve armazenar a nota anterior
-                this.addObjeto(nota, musica);
+                nota.aumentaOitava();
+                this.addObjeto(nota);
                 break;
             case '1':
             case '3':
             case '5':
             case '7':
             case '9':
-                nota.diminuiOitava(); // deve armazenar a nota anterior
-                this.addObjeto(nota, musica);
+                nota.diminuiOitava();
+                this.addObjeto(nota);
                 break;
             case '?':
             case '.':
-                nota.voltaOitava(); // deve armazenar a nota anterior
-                this.addObjeto(nota, musica);
+                nota.voltaOitava();
+                this.addObjeto(nota);
                 break;
             case ';':
                 ordem.aumentaBPM();
-                this.addObjeto(ordem, musica);
+                this.addObjeto(ordem);
                 break;
             case ',':
                 ordem.diminuiBPM();
-                this.addObjeto(ordem, musica);
+                this.addObjeto(ordem);
                 break;
             case '\n':
                 ordem.trocaInstrumento();
-                this.addObjeto(ordem, musica);
+                this.addObjeto(ordem);
                 break;
             default: break; //não faz nada
         }
