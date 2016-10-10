@@ -20,10 +20,12 @@ public class DecodificaTexto {
     //Essenciais
     private char letra;
     private Nota ultimaNota;
+    private ObjetoMusical ultimoObjeto;
     private String som;
 
     public DecodificaTexto(String nomeArquivo) {
         ultimaNota=new Nota();
+        ultimoObjeto = new ObjetoMusical();
         
         try {
             this.texto = new FileReader(nomeArquivo);
@@ -65,6 +67,7 @@ public class DecodificaTexto {
         {
             ultimaNota = (Nota) adicionado;
         }
+        ultimoObjeto = adicionado;
     }
 
     public String getMusica() {
@@ -155,6 +158,32 @@ public class DecodificaTexto {
             case '\n':
                 ordem.trocaInstrumento();
                 this.addObjeto(ordem);
+                break;
+            case 'H':
+            case 'J':
+            case 'K':
+            case 'L':
+            case 'M':
+            case 'N':
+            case 'P':
+            case 'Q':
+            case 'R':
+            case 'S':
+            case 'T':
+            case 'V':
+            case 'W':
+            case 'X':
+            case 'Y':
+            case 'Z':
+                if (ultimoObjeto instanceof Nota)
+                {
+                    this.addObjeto(nota);
+                }
+                else
+                {
+                    nota.setNota('R');
+                    this.addObjeto(nota);
+                }
                 break;
             default: break; //não faz nada
         }
