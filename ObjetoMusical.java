@@ -9,6 +9,6 @@ package musicaixa;
  *
  * @author lsrsampaio
  */
-abstract public class ObjetoMusical {
+public class ObjetoMusical {
     //Serve apenas para criação de array.
 }
