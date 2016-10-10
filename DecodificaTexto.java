@@ -61,6 +61,10 @@ public class DecodificaTexto {
     private void addObjeto(ObjetoMusical adicionado)
     {
         som = som + adicionado.toString();
+        if (adicionado instanceof Nota)
+        {
+            ultimaNota = (Nota) adicionado;
+        }
     }
 
     public String getMusica() {
