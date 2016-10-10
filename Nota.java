@@ -21,7 +21,7 @@ public class Nota extends ObjetoMusical {
     }
     
     public String toString() {
-        return String.format(" %c%d ", this.nota, this.oitava);
+        return String.format(" %c%d ", this.getNota, this.getOitava);
     }
 
 
@@ -32,21 +32,23 @@ public class Nota extends ObjetoMusical {
     public int getOitava() {
         return oitava;
     }
-    
-    public String notaOitava() {
-        return String.format("%c%d", this.nota, this.oitava);
-    }
 
     public void setNota(char nota) {
         this.nota = nota;
     }
 
     public void aumentaOitava() {
-        this.oitava = this.oitava + 1;
+        if (oitava < 8)
+        {
+            this.oitava = this.oitava + 1;
+        }
     }
     
     public void diminuiOitava() {
-        this.oitava = this.oitava - 1;
+        if (oitava > 1)
+        {
+            this.oitava = this.oitava - 1;
+        }
     }
     
     public void voltaOitava() {
