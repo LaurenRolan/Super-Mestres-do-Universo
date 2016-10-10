@@ -20,8 +20,8 @@ public class Nota extends ObjetoMusical {
         this.oitava = this.oitavaDefault;
     }
     
-    public String toString() {
-        return String.format(" %c%d ", this.getNota, this.getOitava);
+    public String toString(){
+        return String.format(" %c%d ", this.getNota(), this.getOitava());
     }
 
 
