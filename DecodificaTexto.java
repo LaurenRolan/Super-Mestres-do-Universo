@@ -23,14 +23,15 @@ public class DecodificaTexto {
     private ObjetoMusical ultimoObjeto;
     private String som;
 
+    
+    private final String NAO_ACHADO="Arquivo não encontrado!";
     public DecodificaTexto(String nomeArquivo) {
         ultimaNota=new Nota();
         //ultimoObjeto = new ObjetoMusical();
-        
         try {
             this.texto = new FileReader(nomeArquivo);
         } catch (FileNotFoundException ex) {
-            System.out.println("Arquivo não encontrado!");
+            System.out.println(NAO_ACHADO);
         }
     }
     
@@ -189,9 +190,52 @@ public class DecodificaTexto {
                 break;
             default: break; //não faz nada
         }
-    }
-    /*public boolean ehNota(char letra){
-        if()
+    }/*
+    private final char PAUSA=' ';
+    private void decodifica(char letra){
+        Nota nota = ultimaNota;
+        Ordem ordem = new Ordem();
+         if(letra==PAUSA){
+             nota.setNota('R');
+             this.addObjeto(nota);
+         }else if(ehNota(letra)){
+             nota.setNota(letra);
+             this.addObjeto(nota);
+         }else if(ehNumero(letra)){
+             if(ehPar(letra)){
+                 nota.aumentaOitava();
+             }else{
+                 nota.diminuiOitava();
+             }
+             this.addObjeto(nota);
+         }else if(ehVoltaOitava(letra)){
+             nota.voltaOitava();
+             this.addObjeto(nota);
+         }
+        
     }*/
+    private final char PRIMEIRA_NOTA='A';
+    private final char ULTIMA_NOTA='G';
+    public boolean ehNota(char letra){
+        return letra>=PRIMEIRA_NOTA && letra<=ULTIMA_NOTA;
+    }
+    private final char PRIMEIR0_NUMERO='0';
+    private final char ULTIMO_NUMERO='9';
+    public boolean ehNumero(char letra){
+        return letra>=PRIMEIR0_NUMERO && letra<=ULTIMO_NUMERO;
+    }
+    public boolean ehPar(char letra){
+        switch(letra){
+            case '0':
+            case '2':
+            case '4':
+            case '6':
+            case '8': return true;
+            default: return false;
+        }
+    }
+    public boolean ehVoltaOitava(char letra){
+        return letra=='.'||letra=='?';
+    }
     
 }
