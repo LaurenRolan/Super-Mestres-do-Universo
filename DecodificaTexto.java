@@ -25,7 +25,7 @@ public class DecodificaTexto {
 
     public DecodificaTexto(String nomeArquivo) {
         ultimaNota=new Nota();
-        ultimoObjeto = new ObjetoMusical();
+        //ultimoObjeto = new ObjetoMusical();
         
         try {
             this.texto = new FileReader(nomeArquivo);
@@ -38,23 +38,25 @@ public class DecodificaTexto {
     {
         return som;
     }
-    
+    private final int FIM_DE_LEITURA=-1;
+    private final String ERRO_LEITURA="Erro ao ler arquivo de texto!";
+    private final String ERRO_FECHAMENTO="Erro ao fechar arquivo de texto!";
     public void leCaracter() {
         //texto.
         int caracter;
         try {
-            while ((caracter = this.texto.read()) != -1) {
+            while ((caracter = this.texto.read()) != FIM_DE_LEITURA) {
                 this.letra = Character.toUpperCase((char) caracter); // converte para maiúscula (usada no JFugue)
                 this.decodifica(letra);
             }
         } catch (IOException ex) {
-            System.out.println("Erro ao ler arquivo de texto!");
+            System.out.println(ERRO_LEITURA);
         } finally {
             if (this.texto != null) {
                 try {
                     this.texto.close();
                 } catch (IOException ex) {
-                    System.out.println("Erro ao fechar arquivo de texto!");
+                    System.out.println(ERRO_FECHAMENTO);
                 }
             }
         }
@@ -188,5 +190,8 @@ public class DecodificaTexto {
             default: break; //não faz nada
         }
     }
+    /*public boolean ehNota(char letra){
+        if()
+    }*/
     
 }
