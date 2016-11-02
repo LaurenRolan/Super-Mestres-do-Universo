@@ -48,7 +48,7 @@ public class DecodificaTexto {
         try {
             while ((caracter = this.texto.read()) != FIM_DE_LEITURA) {
                 this.letra = Character.toUpperCase((char) caracter); // converte para maiúscula (usada no JFugue)
-                this.decodifica(letra);
+                this.defineClasse(letra);
             }
         } catch (IOException ex) {
             System.out.println(ERRO_LEITURA);
@@ -77,7 +77,7 @@ public class DecodificaTexto {
         return som;
     }
     
-    private void decodifica(char letra) {
+    private void defineClasse(char letra) {
         //Inicializa tanto a nota quanto a ordem
         Nota nota = ultimaNota;
         Ordem ordem = new Ordem();
