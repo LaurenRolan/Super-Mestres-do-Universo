@@ -78,7 +78,7 @@ public class DecodificaTexto {
     }
     
     private void decodifica(char letra) {
-        //Inicializa tanto a nota quanto a ordem. Adiciona dependendo do case
+        //Inicializa tanto a nota quanto a ordem
         Nota nota = ultimaNota;
         Ordem ordem = new Ordem();
         
