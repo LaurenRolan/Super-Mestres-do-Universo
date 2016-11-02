@@ -33,7 +33,7 @@ public class Nota extends ObjetoMusical {
         return oitava;
     }
 
-    public void setNota(char nota) {
+    package void setNota(char nota) {
         this.nota = nota;
     }
 
