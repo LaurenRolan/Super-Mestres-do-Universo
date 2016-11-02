@@ -14,10 +14,7 @@ import java.io.IOException;
  * @author Laure
  */
 public class DecodificaTexto {
- //String nomeArquivo;
     private FileReader texto;
-    
-    //Essenciais
     private char letra;
     private Nota ultimaNota;
     private ObjetoMusical ultimoObjeto;
