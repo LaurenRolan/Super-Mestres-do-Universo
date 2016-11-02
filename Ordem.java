@@ -10,8 +10,8 @@ package musicaixa;
  * @author lsrsampaio
  */
 public class Ordem extends ObjetoMusical {
-    int BPM;
-    String instrumento;
+    private int BPM;
+    private String instrumento;
     private int volume;
        
     public Ordem() {
