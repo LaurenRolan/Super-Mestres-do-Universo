@@ -10,9 +10,9 @@ package musicaixa;
  * @author lsrsampaio
  */
 public class Nota extends ObjetoMusical {
-    char nota;
-    int oitava;
-    static int oitavaDefault = 3;
+    private char nota;
+    private int oitava;
+    private static int oitavaDefault = 3;
     
     public Nota()
     {
