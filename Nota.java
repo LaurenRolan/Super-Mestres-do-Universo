@@ -12,16 +12,17 @@ package musicaixa;
 public class Nota extends ObjetoMusical {
     private char nota;
     private int oitava;
-    private static int oitavaDefault = 3;
+    private final int oitavaDefault = 3;
     
     public Nota()
     {
-        this.nota = 'C'; //começa em dó
-        this.oitava = this.oitavaDefault;
+        nota = 'C'; //começa em dó
+        oitava = oitavaDefault;
     }
     
+    @Override
     public String toString(){
-        return String.format(" %c%d ", this.getNota(), this.getOitava());
+        return String.format(" %c%d ", getNota(), getOitava());
     }
 
 
@@ -32,27 +33,20 @@ public class Nota extends ObjetoMusical {
     public int getOitava() {
         return oitava;
     }
-
-    package void setNota(char nota) {
-        this.nota = nota;
+    
+    private final char PRIMEIRA_NOTA='A';
+    private final char ULTIMA_NOTA='G';
+    public void setNota(char nota) {
+        if(nota>=PRIMEIRA_NOTA && nota<=ULTIMA_NOTA)
+            this.nota = nota;
     }
 
     public void aumentaOitava() {
         if (oitava < 8)
         {
-            this.oitava = this.oitava + 1;
+            oitava = oitava + 1;
+        }else{
+            oitava=oitavaDefault;
         }
     }
-    
-    public void diminuiOitava() {
-        if (oitava > 1)
-        {
-            this.oitava = this.oitava - 1;
-        }
-    }
-    
-    public void voltaOitava() {
-        this.oitava = this.oitavaDefault;
-    }
-    
 }
