@@ -211,27 +211,41 @@ public class DecodificaTexto {
          }
         
     }*/
+    
+    //como os métodos serão usados só aqui dentro
+    //é melhor que sejam private
     private final char PRIMEIRA_NOTA='A';
     private final char ULTIMA_NOTA='G';
-    public boolean ehNota(char letra){
+    private boolean ehNota(char letra){
         return letra>=PRIMEIRA_NOTA && letra<=ULTIMA_NOTA;
     }
+    
+    private final char PRIMEIRA_LETRA='a';
+    private final char ULTIMA_LETRA='g';
+    private boolean ehMinuscula(char letra){
+        return letra>=PRIMEIRA_LETRA && letra <= ULTIMA_LETRA;
+    }
+    
     private final char PRIMEIR0_NUMERO='0';
     private final char ULTIMO_NUMERO='9';
-    public boolean ehNumero(char letra){
+    private boolean ehNumero(char letra){
         return letra>=PRIMEIR0_NUMERO && letra<=ULTIMO_NUMERO;
     }
-    public boolean ehPar(char letra){
-        switch(letra){
-            case '0':
-            case '2':
-            case '4':
-            case '6':
-            case '8': return true;
-            default: return false;
-        }
+    
+    private char temporaria;
+    private boolean ehVogal(char letra){
+        temporaria = Character.toLowerCase(letra);
+        return temporaria == 'o' || temporaria == 'i' || temporaria == 'u';
     }
-    public boolean ehVoltaOitava(char letra){
+    
+    private final PRIMEIRA_CONSOANTE = 'b';
+    private final ULTIMA_CONSOANTE = 'z';
+    private boolean ehConsoante(char letra){
+        temporaria = Character.toLowerCase(letra);
+        return (temporaria >= PRIMEIRA_CONSOANTE && temporaria <= ULTIMA_CONSOANTE) && !ehVogal(temporaria) && !ehMinuscula(temporaria);
+    }
+    
+    private boolean ehAumentaOitava(char letra){
         return letra=='.'||letra=='?';
     }
     
