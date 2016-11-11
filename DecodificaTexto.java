@@ -238,6 +238,11 @@ public class DecodificaTexto {
         return temporaria == 'o' || temporaria == 'i' || temporaria == 'u';
     }
     
+    //Explaning Message! :D
+    private boolean ehAumentaVolume(char letra){
+        return ehVogal(letra);
+    }
+    
     private final PRIMEIRA_CONSOANTE = 'b';
     private final ULTIMA_CONSOANTE = 'z';
     private boolean ehConsoante(char letra){
