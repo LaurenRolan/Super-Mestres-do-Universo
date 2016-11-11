@@ -10,5 +10,5 @@ package musicaixa;
  * @author lsrsampaio
  */
 public abstract class ObjetoMusical {
-    //Serve apenas para criação de array.
+    public abstract String toString();
 }
