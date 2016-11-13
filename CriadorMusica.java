@@ -1,7 +1,7 @@
 package musicaixa;
 
 public class CriadorMusica{
-    private Nota ultimaNota;
+    private Nota ultimaNota=new Nota();
     private ObjetoMusical ultimoObjeto;
     private String som;
     
