@@ -12,6 +12,7 @@ package musicaixa;
 public class Nota extends ObjetoMusical {
     private char nota;
     private int oitava;
+    private int volume=12;
     private final int oitavaDefault = 3;
     
     public Nota()
@@ -19,10 +20,25 @@ public class Nota extends ObjetoMusical {
         nota = 'C'; //começa em dó
         oitava = oitavaDefault;
     }
+    private String getVolume() {
+        return String.format("a%d", volume);
+    }
+    private final int VOLUME_MAXIMO=120; //a definir
+    public void aumentaVolume()
+    {
+       if(volume<VOLUME_MAXIMO)
+            volume+=VOLUME_MAXIMO*0.1;
+    }
     
+    public void dobraVolume()
+    {
+        volume *= 2;
+        if(volume>VOLUME_MAXIMO)
+            volume=VOLUME_MAXIMO;   //vamos saturar o volume?
+    }
     @Override
     public String toString(){
-        return String.format(" %c%d ", getNota(), getOitava());
+        return String.format(" %c%d%s ", getNota(), getOitava(), getVolume());
     }
 
 

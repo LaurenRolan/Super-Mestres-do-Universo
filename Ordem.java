@@ -16,21 +16,18 @@ public class Ordem extends ObjetoMusical {
        
     public Ordem() {
         instrumento = 0;
-        volume = 10;
     }
     
     public String toString()
     {
-        return String.format(getStringInstrumento() + " " + getVolume() + " ");
+        return String.format(getStringInstrumento());
     }
     
     public String getStringInstrumento() {
         return String.format("I%d", instrumento);
     }
     
-    public String getVolume() {
-        return String.format("X[Volume]=%d", volume);
-    }
+    
     
     public void setaInstrumento(int novoInstrumento) {
         instrumento=novoInstrumento;
@@ -43,17 +40,5 @@ public class Ordem extends ObjetoMusical {
             instrumento-=NUMERO_INSTRUMENTOS;
     }
     
-    private final int VOLUME_MAXIMO=100; //a definir
-    public void aumentaVolume()
-    {
-       if(volume<=VOLUME_MAXIMO)
-            volume+=VOLUME_MAXIMO*0.1;
-    }
     
-    public void dobraVolume()
-    {
-        volume *= 2;
-        if(volume>VOLUME_MAXIMO)
-            volume=VOLUME_MAXIMO;   //vamos saturar o volume?
-    }
 }
