@@ -45,9 +45,9 @@ public class CriadorMusica{
              return ordem;
          }
         if(ehDobraVolume(letra)){
-             ordem.dobraVolume();
+             ultimaNota.dobraVolume();
              ultimoFoiNota=false;
-             return ordem;
+             return ultimaNota;
          }
         if(letra==LETRA_HARPSICHORD){
              ordem.setaInstrumento(NUM_HARPSICHORD);
@@ -70,9 +70,9 @@ public class CriadorMusica{
              return ordem;
          }
         if(ehAumentaVolume(letra)){
-             ordem.aumentaVolume();
+             ultimaNota.aumentaVolume();
              ultimoFoiNota=false;
-             return ordem;
+             return ultimaNota;
          }
         if(ehAumentaOitava(letra)){
              ultimaNota.aumentaOitava();
@@ -99,8 +99,8 @@ public class CriadorMusica{
         return letra>=PRIMEIRA_LETRA && letra <= ULTIMA_LETRA;
     }    
     
-    private final PRIMEIRA_CONSOANTE = 'b';
-    private final ULTIMA_CONSOANTE = 'z';
+    private final char PRIMEIRA_CONSOANTE = 'b';
+    private final char ULTIMA_CONSOANTE = 'z';
     private boolean ehConsoante(char letra){
         temporaria = Character.toLowerCase(letra);
         return (temporaria >= PRIMEIRA_CONSOANTE && temporaria <= ULTIMA_CONSOANTE) && !ehVogal(temporaria) && !ehMinuscula(temporaria);
