@@ -36,8 +36,9 @@ public class Nota extends ObjetoMusical {
     
     private final char PRIMEIRA_NOTA='A';
     private final char ULTIMA_NOTA='G';
+    private final char PAUSA='R';
     public void setNota(char nota) {
-        if(nota>=PRIMEIRA_NOTA && nota<=ULTIMA_NOTA)
+        if((nota>=PRIMEIRA_NOTA && nota<=ULTIMA_NOTA)||nota==PAUSA)
             this.nota = nota;
     }
 
