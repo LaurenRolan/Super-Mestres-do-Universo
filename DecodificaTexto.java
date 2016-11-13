@@ -224,12 +224,27 @@ public class DecodificaTexto {
     private final char ULTIMA_LETRA='g';
     private boolean ehMinuscula(char letra){
         return letra>=PRIMEIRA_LETRA && letra <= ULTIMA_LETRA;
+    }    
+    
+    private final PRIMEIRA_CONSOANTE = 'b';
+    private final ULTIMA_CONSOANTE = 'z';
+    private boolean ehConsoante(char letra){
+        temporaria = Character.toLowerCase(letra);
+        return (temporaria >= PRIMEIRA_CONSOANTE && temporaria <= ULTIMA_CONSOANTE) && !ehVogal(temporaria) && !ehMinuscula(temporaria);
+    }
+    
+    private boolean ehRepetePausa(char letra){
+        return ehMinuscula(letra) || ehConsoante(letra);
     }
     
     private final char PRIMEIR0_NUMERO='0';
     private final char ULTIMO_NUMERO='9';
     private boolean ehNumero(char letra){
         return letra>=PRIMEIR0_NUMERO && letra<=ULTIMO_NUMERO;
+    }
+    
+    private boolean ehTrocaInstrumento(char letra){
+        return ehNumero(letra);
     }
     
     private char temporaria;
@@ -241,13 +256,6 @@ public class DecodificaTexto {
     //Explaning Message! :D
     private boolean ehAumentaVolume(char letra){
         return ehVogal(letra);
-    }
-    
-    private final PRIMEIRA_CONSOANTE = 'b';
-    private final ULTIMA_CONSOANTE = 'z';
-    private boolean ehConsoante(char letra){
-        temporaria = Character.toLowerCase(letra);
-        return (temporaria >= PRIMEIRA_CONSOANTE && temporaria <= ULTIMA_CONSOANTE) && !ehVogal(temporaria) && !ehMinuscula(temporaria);
     }
     
     private boolean ehAumentaOitava(char letra){
