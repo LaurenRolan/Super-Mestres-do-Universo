@@ -32,14 +32,8 @@ public class CriadorMusica{
     private final char LETRA_CHURCH_ORGAN=',';
     private final int NUM_CHURCH_ORGAN=20;
     private boolean ultimoFoiNota=false;
-    private final char PAUSA=' '; //Mas ' ' não é pra dobrar o volume?
     private ObjetoMusical defineClasse(char letra){
         Ordem ordem = new Ordem();
-         if(letra==PAUSA){ //Modificar para usar o ehRepetePausa
-             ultimaNota.setNota('R');
-             ultimoFoiNota=false;
-             return ultimaNota;
-         }
         if(ehNota(letra)){
              ultimaNota.setNota(letra);
              ultimoFoiNota=true;
