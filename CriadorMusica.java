@@ -31,6 +31,7 @@ public class CriadorMusica{
     private final int NUM_PAN_FLUTE=76;
     private final char LETRA_CHURCH_ORGAN=',';
     private final int NUM_CHURCH_ORGAN=20;
+    private final char DOBRA_VOLUME = ' ';
     private boolean ultimoFoiNota=false;
     private ObjetoMusical defineClasse(char letra){
         Ordem ordem = new Ordem();
@@ -44,7 +45,7 @@ public class CriadorMusica{
              ultimoFoiNota=false;
              return ordem;
          }
-        if(ehDobraVolume(letra)){
+        if(letra == DOBRA_VOLUME){
              ultimaNota.dobraVolume();
              ultimoFoiNota=false;
              return ultimaNota;
@@ -92,28 +93,11 @@ public class CriadorMusica{
     private boolean ehNota(char letra){
         return letra>=PRIMEIRA_NOTA && letra<=ULTIMA_NOTA;
     }
-    
-    private final char PRIMEIRA_LETRA='a';
-    private final char ULTIMA_LETRA='g';
-    private boolean ehMinuscula(char letra){
-        return letra>=PRIMEIRA_LETRA && letra <= ULTIMA_LETRA;
-    }    
-    
-    private final char PRIMEIRA_CONSOANTE = 'b';
-    private final char ULTIMA_CONSOANTE = 'z';
-    private boolean ehConsoante(char letra){
-        temporaria = Character.toLowerCase(letra);
-        return (temporaria >= PRIMEIRA_CONSOANTE && temporaria <= ULTIMA_CONSOANTE) && !ehVogal(temporaria) && !ehMinuscula(temporaria);
-    }
-    
-    private boolean ehRepetePausa(char letra){
-        return ehMinuscula(letra) || ehConsoante(letra);
-    }
-    
-    private final char PRIMEIR0_NUMERO='0';
+        
+    private final char PRIMEIRO_NUMERO='0';
     private final char ULTIMO_NUMERO='9';
     private boolean ehNumero(char letra){
-        return letra>=PRIMEIR0_NUMERO && letra<=ULTIMO_NUMERO;
+        return letra>=PRIMEIRO_NUMERO && letra<=ULTIMO_NUMERO;
     }
     
     private boolean ehTrocaInstrumento(char letra){
@@ -133,10 +117,6 @@ public class CriadorMusica{
     
     private boolean ehAumentaOitava(char letra){
         return letra=='.'||letra=='?';
-    }
-    
-    private boolean ehDobraVolume(char letra){
-        return letra == ' ';
     }
      
 }
