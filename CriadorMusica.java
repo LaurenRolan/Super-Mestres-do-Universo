@@ -24,7 +24,7 @@ public class CriadorMusica{
         return som;
     }
     
-    private void addObjeto(ObjetoMusical adicionado)
+    private void addObjeto(Nota adicionado)
     {
         som = som + adicionado.toString();
     }
@@ -39,7 +39,7 @@ public class CriadorMusica{
     private final int NUM_CHURCH_ORGAN=20;
     private final char DOBRA_VOLUME = ' ';
     private boolean ultimoFoiNota=false;
-    private ObjetoMusical defineClasse(char letra){
+    private Nota defineClasse(char letra){
         Ordem ordem = new Ordem();
         if(ehNota(letra)){
              ultimaNota.setNota(letra);
