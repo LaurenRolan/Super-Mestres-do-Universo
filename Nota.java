@@ -9,7 +9,7 @@ package musicaixa;
  *
  * @author lsrsampaio
  */
-public class Nota extends ObjetoMusical {
+public class Nota {
     private char nota;
     private int oitava;
     private int volume;
@@ -38,7 +38,7 @@ public class Nota extends ObjetoMusical {
         if(volume>VOLUME_MAXIMO)
             volume=VOLUME_MAXIMO;   //vamos saturar o volume?
     }
-    @Override
+
     public String toString(){
         return String.format(" %s %c%d%s ", getInstrumento(), getNota(), getOitava(), getVolume());
     }
