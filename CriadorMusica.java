@@ -5,13 +5,19 @@ public class CriadorMusica{
     private ObjetoMusical ultimoObjeto;
     private String som;
     
-    public void montaMusica(String texto){
+    private void montaMusica(String texto){
        char caracteres[]=new char[texto.toCharArray().length];
        caracteres=texto.toCharArray();
        som="";
        for(char letra : caracteres){
            addObjeto(defineClasse(letra));
        }
+    }
+    
+    public void comecaMusica(String endereco)
+    {
+        LeitorTexto leitor = new LeitorTexto();
+        montaMusica(leitor.lerArquivo(endereco));
     }
     
     public String getSom(){
