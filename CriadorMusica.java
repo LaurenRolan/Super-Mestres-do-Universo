@@ -124,5 +124,15 @@ public class CriadorMusica{
     private boolean ehAumentaOitava(char letra){
         return letra=='.'||letra=='?';
     }
+    private final String ERRO_SALVAR="Houve um erro ao salvar a musica em um arquivo."; 
+    public void salvarMusica(File arquivo){
+        Pattern padrao = new Pattern();
+        padrao.add(som);
+        try {
+            padrao.save(arquivo, "By Musicaixa");
+        } catch (IOException ex) {
+            System.out.println(ERRO_SALVAR);
+        }
+    }
      
 }
