@@ -5,7 +5,7 @@ public class CriadorMusica{
     private ObjetoMusical ultimoObjeto;
     private String som;
     
-    private void montaMusica(String texto){
+    public void montaMusica(String texto){
        char caracteres[]=new char[texto.toCharArray().length];
        caracteres=texto.toCharArray();
        som="";
