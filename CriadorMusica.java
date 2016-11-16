@@ -1,14 +1,18 @@
-package musicaixa;
+package som;
+
+import java.io.File;
+import java.io.IOException;
+import org.jfugue.pattern.Pattern;
 
 public class CriadorMusica{
     private Nota ultimaNota=new Nota();
-    private ObjetoMusical ultimoObjeto;
     private String som;
+    private final String BPM_INICIAL="T[VIVACE] ";
     
     public void montaMusica(String texto){
        char caracteres[]=new char[texto.toCharArray().length];
        caracteres=texto.toCharArray();
-       som="";
+       som=BPM_INICIAL;
        for(char letra : caracteres){
            addObjeto(defineClasse(letra));
        }
@@ -40,16 +44,15 @@ public class CriadorMusica{
     private final char DOBRA_VOLUME = ' ';
     private boolean ultimoFoiNota=false;
     private Nota defineClasse(char letra){
-        Ordem ordem = new Ordem();
         if(ehNota(letra)){
              ultimaNota.setNota(letra);
              ultimoFoiNota=true;
              return ultimaNota;
          }
         if(ehTrocaInstrumento(letra)){
-             ordem.somaInstrumento(letra-'0');
+             ultimaNota.somaInstrumento(letra-'0');
              ultimoFoiNota=false;
-             return ordem;
+             return ultimaNota;
          }
         if(letra == DOBRA_VOLUME){
              ultimaNota.dobraVolume();
@@ -57,24 +60,24 @@ public class CriadorMusica{
              return ultimaNota;
          }
         if(letra==LETRA_HARPSICHORD){
-             ordem.setaInstrumento(NUM_HARPSICHORD);
+             ultimaNota.setaInstrumento(NUM_HARPSICHORD);
              ultimoFoiNota=false;
-             return ordem;
+             return ultimaNota;
          }
         if(letra==LETRA_TUBULAR_BELLS){
-             ordem.setaInstrumento(NUM_TUBULAR_BELLS);
+             ultimaNota.setaInstrumento(NUM_TUBULAR_BELLS);
              ultimoFoiNota=false;
-             return ordem;
+             return ultimaNota;
          }
         if(letra==LETRA_PAN_FLUTE){
-             ordem.setaInstrumento(NUM_PAN_FLUTE);
+             ultimaNota.setaInstrumento(NUM_PAN_FLUTE);
              ultimoFoiNota=false;
-             return ordem;
+             return ultimaNota;
          }
         if(letra==LETRA_CHURCH_ORGAN){
-             ordem.setaInstrumento(NUM_CHURCH_ORGAN);
+             ultimaNota.setaInstrumento(NUM_CHURCH_ORGAN);
              ultimoFoiNota=false;
-             return ordem;
+             return ultimaNota;
          }
         if(ehAumentaVolume(letra)){
              ultimaNota.aumentaVolume();

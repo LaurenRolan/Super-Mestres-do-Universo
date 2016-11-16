@@ -1,38 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package musicaixa;
 
-/**
- *
- * @author lsrsampaio
- */
+package som;
+
 public class Nota {
     private char nota;
     private int oitava;
     private int volume;
+    private int instrumento;
     private final int oitavaDefault = 3;
-    private final int volumeDefautl = 12;
+    private final int volumeDefault = 12;
+    private final int instrumentoDefault = 0;
     
     public Nota()
     {
         nota = 'C'; //começa em dó
         oitava = oitavaDefault;
         volume = volumeDefault;
+        instrumento=instrumentoDefault;
     }
     private String getVolume() {
         return String.format("a%d", volume);
     }
     private final int VOLUME_MAXIMO=120; //a definir
-    protected void aumentaVolume()
+    public void aumentaVolume()
     {
        if(volume<VOLUME_MAXIMO)
             volume+=VOLUME_MAXIMO*0.1;
     }
     
-    protected void dobraVolume()
+    public void dobraVolume()
     {
         volume *= 2;
         if(volume>VOLUME_MAXIMO)
@@ -43,7 +38,7 @@ public class Nota {
         return String.format(" %s %c%d%s ", getInstrumento(), getNota(), getOitava(), getVolume());
     }
     
-    protected void setInstrumento(int instrumento) {
+    public void setaInstrumento(int instrumento) {
         this.instrumento = instrumento;
     }
     
@@ -51,7 +46,7 @@ public class Nota {
         return String.format("I%d", this.instrumento);
     }
     
-    protected void somaInstrumento(int adicionado) {
+    public void somaInstrumento(int adicionado) {
         if(instrumento + adicionado <= 128)
             instrumento += adicionado;
     }
@@ -67,12 +62,12 @@ public class Nota {
     private final char PRIMEIRA_NOTA='A';
     private final char ULTIMA_NOTA='G';
     private final char PAUSA='R';
-    protected void setNota(char nota) {
+    public void setNota(char nota) {
         if((nota>=PRIMEIRA_NOTA && nota<=ULTIMA_NOTA)||nota==PAUSA)
             this.nota = nota;
     }
 
-    protected void aumentaOitava() {
+    public void aumentaOitava() {
         if (oitava < 8)
         {
             oitava = oitava + 1;
